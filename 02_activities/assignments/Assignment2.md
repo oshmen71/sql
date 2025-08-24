@@ -21,7 +21,6 @@ Checklist:
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack at `#cohort-6-help`. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
 
-***
 
 ## Section 1:
 You can start this section following *session 1*, but you may want to wait until you feel comfortable wtih basic SQL query writing. 
@@ -53,12 +52,11 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
-```
+
 ![alt text](image-1.png)
-```
 
-***
-
+![alt text](image-2.png)
+![alt text](image-3.png)
 ## Section 2:
 You can start this section following *session 4*.
 
@@ -75,11 +73,11 @@ Steps to complete this part of the assignment:
 1. Our favourite manager wants a detailed long list of products, but is afraid of tables! We tell them, no problem! We can produce a list with all of the appropriate details. 
 
 Using the following syntax you create our super cool and not at all needy manager a list:
-```
+
 SELECT 
 product_name || ', ' || product_size|| ' (' || product_qty_type || ')'
 FROM product
-```
+
 
 But wait! The product table has some bad data (a few NULL values). 
 Find the NULLs and then using COALESCE, replace the NULL with a blank for the first column with nulls, and 'unit' for the second column with nulls. 
@@ -234,10 +232,10 @@ ADD current_quantity INT;
 
 #### UPDATE
 1. We want to add the current_quantity to the product_units table. First, add a new column, `current_quantity` to the table using the following syntax.
-```
+
 ALTER TABLE product_units
 ADD current_quantity INT;
-```
+
 
 Then, using `UPDATE`, change the current_quantity equal to the **last** `quantity` value from the vendor_inventory details. 
 
