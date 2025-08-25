@@ -73,9 +73,10 @@ Steps to complete this part of the assignment:
 Using the following syntax you create our super cool and not at all needy manager a list:
 
 SELECT 
-product_name || ', ' || product_size|| ' (' || product_qty_type || ')'
-FROM product
-
+    product_name || ', ' || 
+    COALESCE(product_size, '') || ' (' || 
+    COALESCE(product_qty_type, 'unit') || ')'
+FROM product;
 
 But wait! The product table has some bad data (a few NULL values). 
 Find the NULLs and then using COALESCE, replace the NULL with a blank for the first column with nulls, and 'unit' for the second column with nulls. 
