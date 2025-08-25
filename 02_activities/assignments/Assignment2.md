@@ -88,7 +88,7 @@ SELECT
     COALESCE(product_size, '') || ' (' || 
     COALESCE(product_qty_type, 'unit') || ')'
 FROM product;
-<div align="center">-</div>
+
 
 #### Windowed Functions
 1. Write a query that selects from the customer_purchases table and numbers each customer’s visits to the farmer’s market (labeling each market date with a different number). Each customer’s first visit is labeled 1, second visit is labeled 2, etc. 
@@ -111,7 +111,7 @@ CROSS JOIN (
     SELECT COUNT(*) AS cust_count
     FROM customer
 ) c;
-<div align="center">-</div>
+
 
 #### String manipulations
 1. Some product names in the product table have descriptions like "Jar" or "Organic". These are separated from the product name with a hyphen. Create a column using SUBSTR (and a couple of other commands) that captures these, but is otherwise NULL. Remove any trailing or leading whitespaces. Don't just use a case statement for each product! 
@@ -131,14 +131,13 @@ SELECT
     ) AS description
 FROM product;
 
-<div align="center">-</div>
 
 #### UNION
 1. Using a UNION, write a query that displays the market dates with the highest and lowest total sales.
 
 **HINT**: There are a possibly a few ways to do this query, but if you're struggling, try the following: 1) Create a CTE/Temp Table to find sales values grouped dates; 2) Create another CTE/Temp table with a rank windowed function on the previous query to create "best day" and "worst day"; 3) Query the second temp table twice, once for the best day, once for the worst day, with a UNION binding them. 
 
-***WITH sales_per_date AS (
+WITH sales_per_date AS (
     SELECT 
         market_date,
         SUM(quantity) AS total_sales
@@ -190,7 +189,7 @@ CROSS JOIN (
     SELECT COUNT(*) AS cust_count
     FROM customer
 ) c;
-<div align="center">-</div>
+
 
 #### INSERT
 1. Create a new table "product_units". This table will contain only products where the `product_qty_type = 'unit'`. It should use all of the columns from the product table, as well as a new column for the `CURRENT_TIMESTAMP`.  Name the timestamp column `snapshot_timestamp`.
@@ -210,7 +209,7 @@ VALUES (
     'unit',                    
     12.99,                     
     CURRENT_TIMESTAMP
-<div align="center">-</div>
+
 
 #### DELETE 
 1. Delete the older record for the whatever product you added.
@@ -226,9 +225,7 @@ WHERE product_name = 'Apple Pie'
   
 ALTER TABLE product_units
 ADD current_quantity INT;
-<div align="center">-</div>
 
-<div align="center">-</div>
 
 #### UPDATE
 1. We want to add the current_quantity to the product_units table. First, add a new column, `current_quantity` to the table using the following syntax.
