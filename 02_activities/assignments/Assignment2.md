@@ -40,7 +40,7 @@ Additionally, include a date table.
 
 There are several tools online you can use, I'd recommend [Draw.io](https://www.drawio.com/) or [LucidChart](https://www.lucidchart.com/pages/).
 
-**HINT:** You do not need to create any data for this prompt. This is a logical model (ERD) only. 
+ You do not need to create any data for this prompt. This is a logical model (ERD) only. 
 
 
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
@@ -48,14 +48,14 @@ We want to create employee shifts, splitting up the day into morning and evening
 
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
 
-**HINT:** search type 1 vs type 2 slowly changing dimensions. 
+ search type 1 vs type 2 slowly changing dimensions. 
 
 
 ![alt text](image-1.png)
 
 ![alt text](image-2.png)
 ![alt text](image-3.png)
-## Section 2:
+
 You can start this section following *session 4*.
 
 Steps to complete this part of the assignment:
@@ -117,7 +117,7 @@ String manipulations
 |----------------------------|-------------|
 | Habanero Peppers - Organic | Organic     |
 
-**HINT**: you might need to use INSTR(product_name,'-') to find the hyphens. INSTR will help split the column. 
+ you might need to use INSTR(product_name,'-') to find the hyphens. INSTR will help split the column. 
 SELECT 
     product_name,
     TRIM(
@@ -209,7 +209,7 @@ VALUES (
 
 1. Delete the older record for the whatever product you added.
 
-**HINT**: If you don't specify a WHERE clause, [you are going to have a bad time](https://imgflip.com/i/8iq872).
+ If you don't specify a WHERE clause, [you are going to have a bad time](https://imgflip.com/i/8iq872).
 DELETE FROM product_units
 WHERE product_name = 'Apple Pie'
   AND snapshot_timestamp < (
@@ -230,7 +230,7 @@ ADD current_quantity INT;
 
 Then, using `UPDATE`, change the current_quantity equal to the **last** `quantity` value from the vendor_inventory details. 
 
-**HINT**: This one is pretty hard. First, determine how to get the "last" quantity per product. Second, coalesce null values to 0 (if you don't have null values, figure out how to rearrange your query so you do.) Third, `SET current_quantity = (...your select statement...)`, remembering that WHERE can only accommodate one column. Finally, make sure you have a WHERE statement to update the right row, you'll need to use `product_units.product_id` to refer to the correct row within the product_units table. When you have all of these components, you can run the update statement.
+**HINT**: This one is pretty hard. First, determine how to get the "last" quantity per product. Second, coalesce null values to 0 (if you don't have null values, figure out how to rearrange your query so you do.) Third, `SET current_quantity = (your select statement)`, remembering that WHERE can only accommodate one column. Finally, make sure you have a WHERE statement to update the right row, you'll need to use `product_units.product_id` to refer to the correct row within the product_units table. When you have all of these components, you can run the update statement.
 UPDATE product_units pu
 SET current_quantity = (
     SELECT COALESCE(vi.quantity, 0)
