@@ -1,6 +1,5 @@
  Assignment 2: Design a Logical Model and Advanced SQL
-
-🚨 **Please review our [Assignment Submission Guide](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md)** 🚨 for detailed instructions on how to format, branch, and submit your work. Following these guidelines is crucial for your submissions to be evaluated correctly.
+Please review our [Assignment Submission Guide](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md)for detailed instructions on how to format, branch, and submit your work. Following these guidelines is crucial for your submissions to be evaluated correctly.
 
 
 * Submission Due Date: `August 17, 2025`
@@ -132,7 +131,7 @@ FROM product;
 
 1. Using a UNION, write a query that displays the market dates with the highest and lowest total sales.
 
-**HINT**: There are a possibly a few ways to do this query, but if you're struggling, try the following: 1) Create a CTE/Temp Table to find sales values grouped dates; 2) Create another CTE/Temp table with a rank windowed function on the previous query to create "best day" and "worst day"; 3) Query the second temp table twice, once for the best day, once for the worst day, with a UNION binding them. 
+ There are a possibly a few ways to do this query, but if you're struggling, try the following: 1) Create a CTE/Temp Table to find sales values grouped dates; 2) Create another CTE/Temp table with a rank windowed function on the previous query to create "best day" and "worst day"; 3) Query the second temp table twice, once for the best day, once for the worst day, with a UNION binding them. 
 
 WITH sales_per_date AS (
     SELECT 
@@ -170,7 +169,7 @@ Steps to complete this part of the assignment:
 - Complete each question
 
 
-1. Suppose every vendor in the `vendor_inventory` table had 5 of each of their products to sell to **every** customer on record. How much money would each vendor make per product? Show this by vendor_name and product name, rather than using the IDs.
+1. Suppose every vendor in the `vendor_inventory` table had 5 of each of their products to sell to every customer on record. How much money would each vendor make per product? Show this by vendor_name and product name, rather than using the IDs.
 
 : Be sure you select only relevant columns and rows. Remember, CROSS JOIN will explode your table rows, so CROSS JOIN should likely be a subquery. Think a bit about the row counts: how many distinct vendors, product names are there (x)? How many customers are there (y). Before your final group by you should have the product of those two queries (x\*y). 
 SELECT 
@@ -228,9 +227,9 @@ ALTER TABLE product_units
 ADD current_quantity INT;
 
 
-Then, using `UPDATE`, change the current_quantity equal to the **last** `quantity` value from the vendor_inventory details. 
+Then, using `UPDATE`, change the current_quantity equal to the last*`quantity` value from the vendor_inventory details. 
 
-**HINT**: This one is pretty hard. First, determine how to get the "last" quantity per product. Second, coalesce null values to 0 (if you don't have null values, figure out how to rearrange your query so you do.) Third, `SET current_quantity = (your select statement)`, remembering that WHERE can only accommodate one column. Finally, make sure you have a WHERE statement to update the right row, you'll need to use `product_units.product_id` to refer to the correct row within the product_units table. When you have all of these components, you can run the update statement.
+This one is pretty hard. First, determine how to get the "last" quantity per product. Second, coalesce null values to 0 (if you don't have null values, figure out how to rearrange your query so you do.) Third, `SET current_quantity = (your select statement)`, remembering that WHERE can only accommodate one column. Finally, make sure you have a WHERE statement to update the right row, you'll need to use `product_units.product_id` to refer to the correct row within the product_units table. When you have all of these components, you can run the update statement.
 UPDATE product_units pu
 SET current_quantity = (
     SELECT COALESCE(vi.quantity, 0)
